@@ -1,0 +1,35 @@
+//
+//  BAddressPickerController.h
+//  Bee
+//
+//  Created by 林洁 on 16/1/12.
+//  Copyright © 2016年 Lin. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@class BAddressPickerController;
+
+@protocol BAddressPickerDataSource <NSObject>
+
+@required
+- (NSArray*)arrayOfCitiesInAddressPicker:(BAddressPickerController*)addressPicker;
+
+@end
+
+@protocol BaddressPickerDelegate <NSObject>
+
+-(void)addressPicker:(BAddressPickerController*)addressPicker didSelectedCity:(NSString*)city;
+
+@end
+
+@interface BAddressPickerController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+
+//数据源代理协议
+@property (nonatomic, weak) id<BAddressPickerDataSource> dataSource;
+//委托代理协议
+@property (nonatomic, weak) id<BaddressPickerDelegate> delegate;
+
+- (id)initWithFrame:(CGRect)frame;
+
+@end

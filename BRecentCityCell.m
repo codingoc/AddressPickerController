@@ -1,0 +1,77 @@
+//
+//  BRecentCityCell.m
+//  Bee
+//
+//  Created by 林洁 on 16/1/12.
+//  Copyright © 2016年 Lin. All rights reserved.
+//
+
+#import "BRecentCityCell.h"
+#import "BAddressHeader.h"
+
+@implementation BRecentCityCell
+
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.backgroundColor = BG_CELL;
+        [self.contentView addSubview:self.firstButton];
+        [self.contentView addSubview:self.secondButton];
+    }
+    return self;
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
+#pragma mark - Event Response
+- (void)buttonWhenClick:(void (^)(UIButton *))block{
+    self.buttonClickBlock = block;
+}
+
+- (void)buttonClick:(UIButton*)button{
+    self.buttonClickBlock(button);
+}
+
+#pragma mark - Getter and Setter
+- (UIButton*)firstButton{
+    if (_firstButton == nil) {
+        _firstButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _firstButton.frame = CGRectMake(15, 15, BUTTON_WIDTH, BUTTON_HEIGHT);
+        [_firstButton setTitle:@"嘉善" forState:UIControlStateNormal];
+        _firstButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        _firstButton.tintColor = [UIColor blackColor];
+        _firstButton.backgroundColor = [UIColor whiteColor];
+        _firstButton.layer.borderColor = [UIColorFromRGBA(237, 237, 237, 1.0) CGColor];
+        _firstButton.layer.borderWidth = 1;
+        _firstButton.layer.cornerRadius = 3;
+        [_firstButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _firstButton;
+}
+
+- (UIButton*)secondButton{
+    if (_secondButton == nil) {
+        _secondButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        _secondButton.frame = CGRectMake(self.firstButton.frame.size.width + 30, 15, BUTTON_WIDTH, BUTTON_HEIGHT);
+        [_secondButton setTitle:@"嘉善" forState:UIControlStateNormal];
+        _secondButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
+        _secondButton.tintColor = [UIColor blackColor];
+        _secondButton.backgroundColor = [UIColor whiteColor];
+        _secondButton.alpha = 0.8;
+        _secondButton.layer.borderColor = [UIColorFromRGBA(237, 237, 237, 1.0) CGColor];
+        _secondButton.layer.borderWidth = 1;
+        _secondButton.layer.cornerRadius = 3;
+        [_secondButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _secondButton;
+}
+
+@end
