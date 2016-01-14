@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oee-6S-1DN">
-                                <rect key="frame" x="270" y="285" width="60" height="30"/>
+                                <rect key="frame" x="132" y="285" width="60" height="30"/>
                                 <state key="normal" title="地址选择"/>
                                 <connections>
                                     <action selector="addressClickAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sgd-8z-AL3"/>

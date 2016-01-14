@@ -13,13 +13,17 @@
 @protocol BAddressPickerDataSource <NSObject>
 
 @required
-- (NSArray*)arrayOfCitiesInAddressPicker:(BAddressPickerController*)addressPicker;
+- (NSArray*)arrayOfHotCitiesInAddressPicker:(BAddressPickerController*)addressPicker;
 
 @end
 
 @protocol BaddressPickerDelegate <NSObject>
 
 -(void)addressPicker:(BAddressPickerController*)addressPicker didSelectedCity:(NSString*)city;
+
+- (void)beginSearch:(UISearchBar*)searchBar;
+
+- (void)endSearch:(UISearchBar*)searchBar;
 
 @end
 

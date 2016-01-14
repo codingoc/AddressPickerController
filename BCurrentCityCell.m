@@ -20,8 +20,32 @@
     if (self) {
         self.backgroundColor = BG_CELL;
         [self.contentView addSubview:self.GPSButton];
+        [self.contentView addSubview:self.activityIndicatorView];
+        [self.contentView addSubview:self.label];
+        [self.contentView addSubview:self.locationManager];
+        [self setUp];
     }
     return self;
+}
+
+- (void)setUp{
+    [self.locationManager startWithBlock:^{
+        [self.GPSButton setHidden:YES];
+        [self.activityIndicatorView startAnimating];
+    } completionBlock:^(CLLocation *location) {
+        [self.searchManager startReverseGeocode:location completeionBlock:^(LNLocationGeocoder *locationGeocoder, NSError *error) {
+            if (!error) {
+                [self.activityIndicatorView stopAnimating];
+                [self.label setHidden:YES];
+                NSMutableString *mutableString = [NSMutableString stringWithFormat:@"%@",locationGeocoder.city];
+                NSString *title = [mutableString stringByReplacingOccurrencesOfString:@"市" withString:@""];
+                [self.GPSButton setTitle:title forState:UIControlStateNormal];
+                [self.GPSButton setHidden:NO];
+            }
+        }];
+    } failure:^(CLLocation *location, NSError *error) {
+        
+    }];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -44,7 +68,7 @@
     if (_GPSButton == nil) {
         _GPSButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         _GPSButton.frame = CGRectMake(15, 15 , BUTTON_WIDTH, BUTTON_HEIGHT);
-        [_GPSButton setTitle:@"嘉善" forState:UIControlStateNormal];
+        [_GPSButton setTitle:@"" forState:UIControlStateNormal];
         _GPSButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
         _GPSButton.tintColor = [UIColor blackColor];
         _GPSButton.backgroundColor = [UIColor whiteColor];
@@ -55,6 +79,39 @@
         [_GPSButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _GPSButton;
+}
+
+- (UIActivityIndicatorView*)activityIndicatorView{
+    if (_activityIndicatorView == nil) {
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(15, 15, BUTTON_HEIGHT, BUTTON_HEIGHT)];
+        _activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleGray;
+        _activityIndicatorView.color = [UIColor grayColor];
+        _activityIndicatorView.hidesWhenStopped = YES;
+    }
+    return _activityIndicatorView;
+}
+
+- (UILabel*)label{
+    if (_label == nil) {
+        _label = [[UILabel alloc] initWithFrame:CGRectMake(15 + BUTTON_HEIGHT, 15, BUTTON_WIDTH, BUTTON_HEIGHT)];
+        _label.text = @"定位中...";
+        _label.font = [UIFont systemFontOfSize:16.0f];
+    }
+    return _label;
+}
+
+- (LNLocationManager*)locationManager{
+    if (_locationManager == nil) {
+        _locationManager = [[LNLocationManager alloc] init];
+    }
+    return _locationManager;
+}
+
+- (LNSearchManager*)searchManager{
+    if (_searchManager == nil) {
+        _searchManager = [[LNSearchManager alloc] init];
+    }
+    return _searchManager;
 }
 
 @end

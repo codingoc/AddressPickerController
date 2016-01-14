@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3220B2901C4797EB00AEB497 /* BCurrentCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3220B28B1C4797EB00AEB497 /* BCurrentCityCell.m */; };
+		3220B2911C4797EB00AEB497 /* BRecentCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3220B28D1C4797EB00AEB497 /* BRecentCityCell.m */; };
+		3220B2921C4797EB00AEB497 /* BHotCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3220B28F1C4797EB00AEB497 /* BHotCityCell.m */; };
+		3220B2951C47980400AEB497 /* cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3220B2931C47980400AEB497 /* cities.plist */; };
+		3220B2991C47981300AEB497 /* ChineseToPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3220B2981C47981300AEB497 /* ChineseToPinyin.m */; };
+		3220B2A41C47984600AEB497 /* LNSearchManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3220B2A11C47984600AEB497 /* LNSearchManager.m */; };
+		3220B2A51C47984600AEB497 /* LNLocationGeocoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3220B2A31C47984600AEB497 /* LNLocationGeocoder.m */; };
+		3220B2A81C47985D00AEB497 /* BAddressPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3220B2A71C47985D00AEB497 /* BAddressPickerController.m */; };
+		3220B2AA1C47986700AEB497 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3220B2A91C47986700AEB497 /* CoreLocation.framework */; };
 		328F5C5A1C4641B700360E29 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 328F5C591C4641B700360E29 /* main.m */; };
 		328F5C5D1C4641B700360E29 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 328F5C5C1C4641B700360E29 /* AppDelegate.m */; };
 		328F5C601C4641B700360E29 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 328F5C5F1C4641B700360E29 /* ViewController.m */; };
@@ -15,11 +24,8 @@
 		328F5C681C4641B700360E29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 328F5C661C4641B700360E29 /* LaunchScreen.storyboard */; };
 		328F5C731C4641B700360E29 /* BAddressPickerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 328F5C721C4641B700360E29 /* BAddressPickerDemoTests.m */; };
 		328F5C7E1C4641B700360E29 /* BAddressPickerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 328F5C7D1C4641B700360E29 /* BAddressPickerDemoUITests.m */; };
-		328F5C8E1C4641E700360E29 /* BAddressPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 328F5C8D1C4641E700360E29 /* BAddressPickerController.m */; };
-		328F5C961C4641F800360E29 /* BCurrentCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328F5C911C4641F800360E29 /* BCurrentCityCell.m */; };
-		328F5C971C4641F800360E29 /* BRecentCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328F5C931C4641F800360E29 /* BRecentCityCell.m */; };
-		328F5C981C4641F800360E29 /* BHotCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 328F5C951C4641F800360E29 /* BHotCityCell.m */; };
 		328F5C9E1C46455A00360E29 /* AddressPickerDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 328F5C9D1C46455A00360E29 /* AddressPickerDemo.m */; };
+		32A0F0C71C47D4E500CCA141 /* LNLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0F0C61C47D4E500CCA141 /* LNLocationManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +46,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3220B28A1C4797EB00AEB497 /* BCurrentCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCurrentCityCell.h; sourceTree = "<group>"; };
+		3220B28B1C4797EB00AEB497 /* BCurrentCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCurrentCityCell.m; sourceTree = "<group>"; };
+		3220B28C1C4797EB00AEB497 /* BRecentCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRecentCityCell.h; sourceTree = "<group>"; };
+		3220B28D1C4797EB00AEB497 /* BRecentCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRecentCityCell.m; sourceTree = "<group>"; };
+		3220B28E1C4797EB00AEB497 /* BHotCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHotCityCell.h; sourceTree = "<group>"; };
+		3220B28F1C4797EB00AEB497 /* BHotCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHotCityCell.m; sourceTree = "<group>"; };
+		3220B2931C47980400AEB497 /* cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = cities.plist; sourceTree = "<group>"; };
+		3220B2941C47980400AEB497 /* BAddressHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAddressHeader.h; sourceTree = "<group>"; };
+		3220B2971C47981300AEB497 /* ChineseToPinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyin.h; sourceTree = "<group>"; };
+		3220B2981C47981300AEB497 /* ChineseToPinyin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyin.m; sourceTree = "<group>"; };
+		3220B2A01C47984600AEB497 /* LNSearchManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNSearchManager.h; sourceTree = "<group>"; };
+		3220B2A11C47984600AEB497 /* LNSearchManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNSearchManager.m; sourceTree = "<group>"; };
+		3220B2A21C47984600AEB497 /* LNLocationGeocoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNLocationGeocoder.h; sourceTree = "<group>"; };
+		3220B2A31C47984600AEB497 /* LNLocationGeocoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNLocationGeocoder.m; sourceTree = "<group>"; };
+		3220B2A61C47985D00AEB497 /* BAddressPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAddressPickerController.h; sourceTree = "<group>"; };
+		3220B2A71C47985D00AEB497 /* BAddressPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAddressPickerController.m; sourceTree = "<group>"; };
+		3220B2A91C47986700AEB497 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		328F5C551C4641B700360E29 /* BAddressPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAddressPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		328F5C591C4641B700360E29 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		328F5C5B1C4641B700360E29 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -56,17 +79,10 @@
 		328F5C791C4641B700360E29 /* BAddressPickerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BAddressPickerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		328F5C7D1C4641B700360E29 /* BAddressPickerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BAddressPickerDemoUITests.m; sourceTree = "<group>"; };
 		328F5C7F1C4641B700360E29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		328F5C8C1C4641E700360E29 /* BAddressPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAddressPickerController.h; sourceTree = "<group>"; };
-		328F5C8D1C4641E700360E29 /* BAddressPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAddressPickerController.m; sourceTree = "<group>"; };
-		328F5C901C4641F800360E29 /* BCurrentCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCurrentCityCell.h; sourceTree = "<group>"; };
-		328F5C911C4641F800360E29 /* BCurrentCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCurrentCityCell.m; sourceTree = "<group>"; };
-		328F5C921C4641F800360E29 /* BRecentCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BRecentCityCell.h; sourceTree = "<group>"; };
-		328F5C931C4641F800360E29 /* BRecentCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BRecentCityCell.m; sourceTree = "<group>"; };
-		328F5C941C4641F800360E29 /* BHotCityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHotCityCell.h; sourceTree = "<group>"; };
-		328F5C951C4641F800360E29 /* BHotCityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHotCityCell.m; sourceTree = "<group>"; };
-		328F5C9A1C46420F00360E29 /* BAddressHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAddressHeader.h; sourceTree = "<group>"; };
 		328F5C9C1C46455A00360E29 /* AddressPickerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressPickerDemo.h; sourceTree = "<group>"; };
 		328F5C9D1C46455A00360E29 /* AddressPickerDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressPickerDemo.m; sourceTree = "<group>"; };
+		32A0F0C51C47D4E500CCA141 /* LNLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LNLocationManager.h; sourceTree = "<group>"; };
+		32A0F0C61C47D4E500CCA141 /* LNLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LNLocationManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3220B2AA1C47986700AEB497 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,9 +111,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3220B2961C47980800AEB497 /* PinYin */ = {
+			isa = PBXGroup;
+			children = (
+				3220B2971C47981300AEB497 /* ChineseToPinyin.h */,
+				3220B2981C47981300AEB497 /* ChineseToPinyin.m */,
+			);
+			name = PinYin;
+			sourceTree = "<group>";
+		};
+		3220B29A1C47981C00AEB497 /* LNMap */ = {
+			isa = PBXGroup;
+			children = (
+				3220B29F1C47983B00AEB497 /* LNSearch */,
+				3220B29B1C47982C00AEB497 /* LNLocation */,
+			);
+			name = LNMap;
+			sourceTree = "<group>";
+		};
+		3220B29B1C47982C00AEB497 /* LNLocation */ = {
+			isa = PBXGroup;
+			children = (
+				32A0F0C51C47D4E500CCA141 /* LNLocationManager.h */,
+				32A0F0C61C47D4E500CCA141 /* LNLocationManager.m */,
+			);
+			name = LNLocation;
+			sourceTree = "<group>";
+		};
+		3220B29F1C47983B00AEB497 /* LNSearch */ = {
+			isa = PBXGroup;
+			children = (
+				3220B2A01C47984600AEB497 /* LNSearchManager.h */,
+				3220B2A11C47984600AEB497 /* LNSearchManager.m */,
+				3220B2A21C47984600AEB497 /* LNLocationGeocoder.h */,
+				3220B2A31C47984600AEB497 /* LNLocationGeocoder.m */,
+			);
+			name = LNSearch;
+			sourceTree = "<group>";
+		};
 		328F5C4C1C4641B700360E29 = {
 			isa = PBXGroup;
 			children = (
+				3220B2A91C47986700AEB497 /* CoreLocation.framework */,
 				328F5C8B1C4641D100360E29 /* AddressPickerController */,
 				328F5C571C4641B700360E29 /* BAddressPickerDemo */,
 				328F5C711C4641B700360E29 /* BAddressPickerDemoTests */,
@@ -161,10 +217,11 @@
 		328F5C8B1C4641D100360E29 /* AddressPickerController */ = {
 			isa = PBXGroup;
 			children = (
+				3220B29A1C47981C00AEB497 /* LNMap */,
 				328F5C991C4641FD00360E29 /* Resources */,
 				328F5C8F1C4641EA00360E29 /* Cell */,
-				328F5C8C1C4641E700360E29 /* BAddressPickerController.h */,
-				328F5C8D1C4641E700360E29 /* BAddressPickerController.m */,
+				3220B2A61C47985D00AEB497 /* BAddressPickerController.h */,
+				3220B2A71C47985D00AEB497 /* BAddressPickerController.m */,
 			);
 			name = AddressPickerController;
 			sourceTree = "<group>";
@@ -172,12 +229,12 @@
 		328F5C8F1C4641EA00360E29 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				328F5C901C4641F800360E29 /* BCurrentCityCell.h */,
-				328F5C911C4641F800360E29 /* BCurrentCityCell.m */,
-				328F5C921C4641F800360E29 /* BRecentCityCell.h */,
-				328F5C931C4641F800360E29 /* BRecentCityCell.m */,
-				328F5C941C4641F800360E29 /* BHotCityCell.h */,
-				328F5C951C4641F800360E29 /* BHotCityCell.m */,
+				3220B28A1C4797EB00AEB497 /* BCurrentCityCell.h */,
+				3220B28B1C4797EB00AEB497 /* BCurrentCityCell.m */,
+				3220B28C1C4797EB00AEB497 /* BRecentCityCell.h */,
+				3220B28D1C4797EB00AEB497 /* BRecentCityCell.m */,
+				3220B28E1C4797EB00AEB497 /* BHotCityCell.h */,
+				3220B28F1C4797EB00AEB497 /* BHotCityCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -185,7 +242,9 @@
 		328F5C991C4641FD00360E29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				328F5C9A1C46420F00360E29 /* BAddressHeader.h */,
+				3220B2961C47980800AEB497 /* PinYin */,
+				3220B2931C47980400AEB497 /* cities.plist */,
+				3220B2941C47980400AEB497 /* BAddressHeader.h */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -305,6 +364,7 @@
 				328F5C681C4641B700360E29 /* LaunchScreen.storyboard in Resources */,
 				328F5C651C4641B700360E29 /* Assets.xcassets in Resources */,
 				328F5C631C4641B700360E29 /* Main.storyboard in Resources */,
+				3220B2951C47980400AEB497 /* cities.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,14 +389,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				328F5C971C4641F800360E29 /* BRecentCityCell.m in Sources */,
-				328F5C961C4641F800360E29 /* BCurrentCityCell.m in Sources */,
+				32A0F0C71C47D4E500CCA141 /* LNLocationManager.m in Sources */,
+				3220B2A41C47984600AEB497 /* LNSearchManager.m in Sources */,
 				328F5C601C4641B700360E29 /* ViewController.m in Sources */,
-				328F5C981C4641F800360E29 /* BHotCityCell.m in Sources */,
 				328F5C5D1C4641B700360E29 /* AppDelegate.m in Sources */,
+				3220B2A81C47985D00AEB497 /* BAddressPickerController.m in Sources */,
 				328F5C5A1C4641B700360E29 /* main.m in Sources */,
-				328F5C8E1C4641E700360E29 /* BAddressPickerController.m in Sources */,
+				3220B2991C47981300AEB497 /* ChineseToPinyin.m in Sources */,
+				3220B2A51C47984600AEB497 /* LNLocationGeocoder.m in Sources */,
+				3220B2911C4797EB00AEB497 /* BRecentCityCell.m in Sources */,
 				328F5C9E1C46455A00360E29 /* AddressPickerDemo.m in Sources */,
+				3220B2901C4797EB00AEB497 /* BCurrentCityCell.m in Sources */,
+				3220B2921C4797EB00AEB497 /* BHotCityCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +540,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BAddressPickerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.onlylin.BAddressPickerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -487,6 +552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BAddressPickerDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.onlylin.BAddressPickerDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -560,6 +626,7 @@
 				328F5C841C4641B700360E29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		328F5C851C4641B700360E29 /* Build configuration list for PBXNativeTarget "BAddressPickerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -568,6 +635,7 @@
 				328F5C871C4641B700360E29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		328F5C881C4641B700360E29 /* Build configuration list for PBXNativeTarget "BAddressPickerDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -576,6 +644,7 @@
 				328F5C8A1C4641B700360E29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

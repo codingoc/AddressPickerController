@@ -37,13 +37,21 @@
 }
 
 #pragma mark - BAddressController Delegate
-- (NSArray*)arrayOfCitiesInAddressPicker:(BAddressPickerController *)addressPicker{
-    return @[@"北京",@"上海",@"深圳",@"杭州",@"广州",@"武汉",@"天津",@"广州",@"武汉",@"天津"];
+- (NSArray*)arrayOfHotCitiesInAddressPicker:(BAddressPickerController *)addressPicker{
+    return @[@"北京",@"上海",@"深圳",@"杭州",@"广州",@"武汉",@"天津",@"重庆",@"成都",@"苏州"];
 }
 
 
 - (void)addressPicker:(BAddressPickerController *)addressPicker didSelectedCity:(NSString *)city{
     NSLog(@"%@",city);
+}
+
+- (void)beginSearch:(UISearchBar *)searchBar{
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
+
+- (void)endSearch:(UISearchBar *)searchBar{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 /*
