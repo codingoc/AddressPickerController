@@ -9,7 +9,7 @@
 #import "AddressPickerDemo.h"
 #import "BAddressPickerController.h"
 
-@interface AddressPickerDemo ()<BaddressPickerDelegate,BAddressPickerDataSource>
+@interface AddressPickerDemo ()<BAddressPickerDelegate,BAddressPickerDataSource>
 
 @end
 

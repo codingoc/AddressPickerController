@@ -17,7 +17,7 @@
 
 @end
 
-@protocol BaddressPickerDelegate <NSObject>
+@protocol BAddressPickerDelegate <NSObject>
 
 -(void)addressPicker:(BAddressPickerController*)addressPicker didSelectedCity:(NSString*)city;
 
@@ -32,7 +32,7 @@
 //数据源代理协议
 @property (nonatomic, weak) id<BAddressPickerDataSource> dataSource;
 //委托代理协议
-@property (nonatomic, weak) id<BaddressPickerDelegate> delegate;
+@property (nonatomic, weak) id<BAddressPickerDelegate> delegate;
 
 - (id)initWithFrame:(CGRect)frame;
 
