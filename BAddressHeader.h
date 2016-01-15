@@ -18,5 +18,7 @@
 #define UIColorFromRGBA(r, g, b , a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define BG_CELL UIColorFromRGBA(250, 250, 250, 1.0)
 
+#define currentCity (@"currentCity")
+
 
 #endif /* BAddressHeader_h */

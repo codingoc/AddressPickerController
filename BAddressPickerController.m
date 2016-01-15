@@ -30,6 +30,13 @@
 
 @implementation BAddressPickerController
 
+/**
+ *  初始化方法
+ *
+ *  @param frame
+ *
+ *  @return
+ */
 - (id)initWithFrame:(CGRect)frame{
     self = [super init];
     if (self) {
@@ -37,6 +44,7 @@
         [self initData];
         [self initSearchBar];
         [self initTableView];
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:currentCity];
     }
     return self;
 }
@@ -48,6 +56,13 @@
 }
 
 #pragma mark - UISearchBar Delegate
+/**
+ *  搜索开始回调用于更新UI
+ *
+ *  @param searchBar
+ *
+ *  @return
+ */
 - (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar{
     if ([self.delegate respondsToSelector:@selector(beginSearch:)]) {
         [self.delegate beginSearch:searchBar];
@@ -64,6 +79,13 @@
     return YES;
 }
 
+/**
+ *  搜索结束回调用于更新UI
+ *
+ *  @param searchBar
+ *
+ *  @return
+ */
 - (BOOL)searchBarShouldEndEditing:(UISearchBar *)searchBar{
     if ([self.delegate respondsToSelector:@selector(endSearch:)]) {
         [self.delegate endSearch:searchBar];
@@ -80,9 +102,6 @@
     return YES;
 }
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
-    
-}
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
     [resultArray removeAllObjects];
@@ -130,11 +149,6 @@
                 currentCityCell = [[BCurrentCityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"currentCityCell"];
             }
             currentCityCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [currentCityCell buttonWhenClick:^(UIButton *button) {
-                if ([self.delegate respondsToSelector:@selector(addressPicker:didSelectedCity:)]) {
-                    [self.delegate addressPicker:self didSelectedCity:button.titleLabel.text];
-                }
-            }];
             return currentCityCell;
         }else if (indexPath.section == 1){
             BRecentCityCell *recentCityCell = [tableView dequeueReusableCellWithIdentifier:@"recentCityCell"];
@@ -142,11 +156,11 @@
                 recentCityCell = [[BRecentCityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"recentCityCell"];
             }
             recentCityCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [recentCityCell buttonWhenClick:^(UIButton *button) {
-                if ([self.delegate respondsToSelector:@selector(addressPicker:didSelectedCity:)]) {
-                    [self.delegate addressPicker:self didSelectedCity:button.titleLabel.text];
-                }
-            }];
+            //如果第一次使用没有最近访问的城市则赢该行
+            if (![[NSUserDefaults standardUserDefaults] objectForKey:currentCity]) {
+                recentCityCell.frame = CGRectMake(0, 0, 0, 0);
+                [recentCityCell setHidden:YES];
+            }
             return recentCityCell;
         }else if (indexPath.section == 2){
             BHotCityCell *hotCell = [tableView dequeueReusableCellWithIdentifier:@"hotCityCell"];
@@ -154,11 +168,6 @@
                 hotCell = [[BHotCityCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"hotCityCell" array:hotCities];
             }
             hotCell.selectionStyle = UITableViewCellSelectionStyleNone;
-            [hotCell buttonWhenClick:^(UIButton *button) {
-                if ([self.delegate respondsToSelector:@selector(addressPicker:didSelectedCity:)]) {
-                    [self.delegate addressPicker:self didSelectedCity:button.titleLabel.text];
-                }
-            }];
             return hotCell;
         }else{
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:Identifier];
@@ -166,10 +175,6 @@
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
             }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            NSString *cityKey = [titleArray objectAtIndex:indexPath.section - 3];
-            NSArray *array = [self.dictionary objectForKey:cityKey];
-            cell.textLabel.text = [array objectAtIndex:indexPath.row];
-            cell.textLabel.font = [UIFont systemFontOfSize:16.0];
             return cell;
         }
     }else{
@@ -179,9 +184,43 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:Identifier];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (tableView == _tableView) {
+        if ([cell isKindOfClass:[BCurrentCityCell class]]) {
+            [(BCurrentCityCell*)cell buttonWhenClick:^(UIButton *button) {
+                if ([self.delegate respondsToSelector:@selector(addressPicker:didSelectedCity:)]) {
+                    [self saveCurrentCity:button.titleLabel.text];
+                    [self.delegate addressPicker:self didSelectedCity:button.titleLabel.text];
+                }
+            }];
+        }else if ([cell isKindOfClass:[BRecentCityCell class]]){
+            [(BRecentCityCell*)cell buttonWhenClick:^(UIButton *button) {
+                if ([self.delegate respondsToSelector:@selector(addressPicker:didSelectedCity:)]) {
+                    [self saveCurrentCity:button.titleLabel.text];
+                    [self.delegate addressPicker:self didSelectedCity:button.titleLabel.text];
+                }
+            }];
+        }else if([cell isKindOfClass:[BHotCityCell class]]){
+            [(BHotCityCell*)cell buttonWhenClick:^(UIButton *button) {
+                if ([self.delegate respondsToSelector:@selector(addressPicker:didSelectedCity:)]) {
+                    [self saveCurrentCity:button.titleLabel.text];
+                    [self.delegate addressPicker:self didSelectedCity:button.titleLabel.text];
+                }
+            }];
+        }else{
+            NSString *cityKey = [titleArray objectAtIndex:indexPath.section - 3];
+            NSArray *array = [self.dictionary objectForKey:cityKey];
+            cell.textLabel.text = [array objectAtIndex:indexPath.row];
+            cell.textLabel.font = [UIFont systemFontOfSize:16.0];
+        }
+
+    }else{
         cell.textLabel.text = [resultArray objectAtIndex:indexPath.row];
         cell.textLabel.font = [UIFont systemFontOfSize:16.0];
-        return cell;
     }
 }
 
@@ -214,6 +253,10 @@
         if (section == 0) {
             label.text = @"当前城市";
         }else if (section == 1){
+            //如果第一次使用没有最近访问的城市则赢该行
+            if (![[NSUserDefaults standardUserDefaults] objectForKey:currentCity]) {
+                return nil;
+            }
             label.text = @"最近访问城市";
         }else if (section == 2){
             label.text = @"热门城市";
@@ -228,6 +271,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (tableView == _tableView) {
+        if (section == 1) {
+            //如果第一次使用没有最近访问的城市则赢该行
+            if (![[NSUserDefaults standardUserDefaults] objectForKey:currentCity]) {
+                return 0.01;
+            }
+        }
         return 28;
     }else{
         return 0.01;
@@ -235,6 +284,12 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    if (section == 1) {
+        //如果第一次使用没有最近访问的城市则赢该行
+        if (![[NSUserDefaults standardUserDefaults] objectForKey:currentCity]) {
+            return 0.01;
+        }
+    }
     return 5;
 }
 
@@ -244,6 +299,11 @@
             return ceil((float)[hotCities count] / 3) * (BUTTON_HEIGHT + 15) + 15;
         }else if (indexPath.section > 2){
             return 42;
+        }else if (indexPath.section == 1){
+            //如果第一次使用没有最近访问的城市则赢该行
+            if (![[NSUserDefaults standardUserDefaults] objectForKey:currentCity]) {
+                return 0;
+            }
         }
         return BUTTON_HEIGHT + 30;
     }else{
@@ -253,22 +313,40 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     if (tableView == _tableView) {
         if (indexPath.section > 2) {
             NSString *cityKey = [titleArray objectAtIndex:indexPath.section - 3];
             NSArray *array = [self.dictionary objectForKey:cityKey];
             if ([self.delegate respondsToSelector:@selector(addressPicker:didSelectedCity:)]) {
+                [self saveCurrentCity:[array objectAtIndex:indexPath.row]];
                 [self.delegate addressPicker:self didSelectedCity:[array objectAtIndex:indexPath.row]];
             }
         }
     }else{
         if ([self.delegate respondsToSelector:@selector(addressPicker:didSelectedCity:)]) {
+            [self saveCurrentCity:[resultArray objectAtIndex:indexPath.row]];
             [self.delegate addressPicker:self didSelectedCity:[resultArray objectAtIndex:indexPath.row]];
         }
     }
 }
 
-
+//保存访问过的城市
+- (void)saveCurrentCity:(NSString*)city{
+    NSMutableArray *currentArray = [[NSMutableArray alloc] initWithArray:[[NSUserDefaults standardUserDefaults] objectForKey:currentCity]];
+    if (currentArray == nil) {
+        currentArray = [NSMutableArray array];
+    }
+    if ([currentArray count] < 2 && ![currentArray containsObject:city]) {
+        [currentArray addObject:city];
+    }else{
+        if (![currentArray containsObject:city]) {
+            currentArray[1] = currentArray[0];
+            currentArray[0] = city;
+        }
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:currentArray forKey:currentCity];
+}
 
 /*
 #pragma mark - Navigation
@@ -328,5 +406,7 @@
     }
     return _dictionary;
 }
+
+
 
 @end

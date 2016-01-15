@@ -9,6 +9,12 @@
 #import "BRecentCityCell.h"
 #import "BAddressHeader.h"
 
+@interface BRecentCityCell ()
+
+@property (nonatomic, strong) NSMutableArray *currentArray;
+
+@end
+
 @implementation BRecentCityCell
 
 - (void)awakeFromNib {
@@ -21,6 +27,13 @@
         self.backgroundColor = BG_CELL;
         [self.contentView addSubview:self.firstButton];
         [self.contentView addSubview:self.secondButton];
+        if ([self.currentArray count] > 1) {
+            [self.firstButton setTitle:self.currentArray[0] forState:UIControlStateNormal];
+            [self.secondButton setTitle:self.currentArray[1] forState:UIControlStateNormal];
+        }else if ([self.currentArray count] > 0){
+            [self.firstButton setTitle:self.currentArray[0] forState:UIControlStateNormal];
+            [self.secondButton setHidden:YES];
+        }
     }
     return self;
 }
@@ -45,7 +58,7 @@
     if (_firstButton == nil) {
         _firstButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         _firstButton.frame = CGRectMake(15, 15, BUTTON_WIDTH, BUTTON_HEIGHT);
-        [_firstButton setTitle:@"嘉善" forState:UIControlStateNormal];
+        [_firstButton setTitle:@"" forState:UIControlStateNormal];
         _firstButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
         _firstButton.tintColor = [UIColor blackColor];
         _firstButton.backgroundColor = [UIColor whiteColor];
@@ -61,7 +74,7 @@
     if (_secondButton == nil) {
         _secondButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         _secondButton.frame = CGRectMake(self.firstButton.frame.size.width + 30, 15, BUTTON_WIDTH, BUTTON_HEIGHT);
-        [_secondButton setTitle:@"嘉善" forState:UIControlStateNormal];
+        [_secondButton setTitle:@"" forState:UIControlStateNormal];
         _secondButton.titleLabel.font = [UIFont systemFontOfSize:16.0];
         _secondButton.tintColor = [UIColor blackColor];
         _secondButton.backgroundColor = [UIColor whiteColor];
@@ -72,6 +85,13 @@
         [_secondButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _secondButton;
+}
+
+- (NSMutableArray*)currentArray{
+    if (_currentArray == nil) {
+        _currentArray = [[NSUserDefaults standardUserDefaults] objectForKey:currentCity];
+    }
+    return _currentArray;
 }
 
 @end
