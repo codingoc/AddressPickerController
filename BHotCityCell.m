@@ -8,7 +8,7 @@
 
 #import "BHotCityCell.h"
 #import "BAddressHeader.h"
-
+#import "BAddressPickerController.h"
 
 @implementation BHotCityCell
 
@@ -45,7 +45,8 @@
     for (int i = 0; i < [cities count]; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         button.frame = CGRectMake(15 + (i % 3) * (BUTTON_WIDTH + 15), 15 + (i / 3) * (15 + BUTTON_HEIGHT), BUTTON_WIDTH, BUTTON_HEIGHT);
-        [button setTitle:cities[i] forState:UIControlStateNormal];
+        City *city = [cities objectAtIndex:i];
+        [button setTitle:city.name forState:UIControlStateNormal];
         button.titleLabel.font = [UIFont systemFontOfSize:16.0];
         button.tintColor = [UIColor blackColor];
         button.backgroundColor = [UIColor whiteColor];

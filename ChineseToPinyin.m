@@ -5817,7 +5817,7 @@ char pinyinFirstLetter(unsigned short hanzi) {
     unsigned char ucHigh, ucLow;
     int nCode;
     NSString *strValue = @"";
-	int iLen = [gb2312_data length];
+	NSUInteger iLen = [gb2312_data length];
 	char *gb2312_string = (char *)[gb2312_data bytes];
     for (int i = 0; i < iLen; i++) {
         if ((unsigned char)gb2312_string[i] < 0x80 ) {

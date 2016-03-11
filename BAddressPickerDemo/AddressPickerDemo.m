@@ -23,9 +23,7 @@
     {
         self.navigationController.navigationBar.translucent = NO;
     }
-    BAddressPickerController *addressPickerController = [[BAddressPickerController alloc] initWithFrame:self.view.frame];
-    addressPickerController.dataSource = self;
-    addressPickerController.delegate = self;
+    BAddressPickerController *addressPickerController = [[BAddressPickerController alloc] initWithDataSource:self delegate:self];
     
     [self addChildViewController:addressPickerController];
     [self.view addSubview:addressPickerController.view];
@@ -38,11 +36,19 @@
 
 #pragma mark - BAddressController Delegate
 - (NSArray*)arrayOfHotCitiesInAddressPicker:(BAddressPickerController *)addressPicker{
-    return @[@"北京",@"上海",@"深圳",@"杭州",@"广州",@"武汉",@"天津",@"重庆",@"成都",@"苏州"];
+    City *c1 = [[City alloc] init:@"宜昌" code:@"4205"];
+    City *c2 = [[City alloc] init:@"武汉" code:@"4201"];
+    return @[c1, c2];
 }
 
+- (NSArray *)cityListWithAlphabetKey:(BAddressPickerController *)addressPicker
+{
+    City *c1 = [[City alloc] init:@"宜昌" code:@"4205"];
+    City *c2 = [[City alloc] init:@"武汉" code:@"4201"];
+    return @[c1, c2];
+}
 
-- (void)addressPicker:(BAddressPickerController *)addressPicker didSelectedCity:(NSString *)city{
+- (void)addressPicker:(BAddressPickerController *)addressPicker didSelectedCity:(City *)city{
     NSLog(@"%@",city);
 }
 
