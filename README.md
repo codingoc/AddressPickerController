@@ -1,5 +1,5 @@
 ## 城市地址选择
-iOS8+城市地址选择控制器，使用方法如下:
+iOS8+城市地址选择控制器，使用方法如下，源码可随意定制:
 
 ```objc
 - (void)openAddressPicker {
@@ -28,5 +28,5 @@ iOS8+城市地址选择控制器，使用方法如下:
 }
 ```
 
-效果如下： 
-	![](https://github.com/codingoc/AddressPickerController/raw/master/snapshot.PNG)
+最终显示效果如下: 
+![](https://github.com/codingoc/AddressPickerController/raw/master/snapshot.PNG)
