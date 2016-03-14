@@ -3,7 +3,7 @@
 //  AddressPickerTest
 //
 //  Created by cc on 16/3/12.
-//  Copyright © 2016年 onlylin. All rights reserved.
+//  Copyright © 2016年 cc. All rights reserved.
 //
 
 #import "AppDelegate.h"
