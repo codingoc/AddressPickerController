@@ -55,8 +55,14 @@
 }
 
 - (void)onCancelBarItem: (UIBarButtonItem *)barItem {
-    self.searchController.active = NO;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    // http://stackoverflow.com/questions/14341739/dismissviewcontrolleranimatedcompletion-has-a-couple-second-delay
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (self.searchController.isViewLoaded) {
+            // http://stackoverflow.com/questions/32704169/attempting-to-load-the-view-of-a-view-controller-while-it-is-deallocating-ui
+            self.searchController.active = NO;
+        }
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 - (void)didReceiveMemoryWarning {
@@ -223,10 +229,10 @@
 // MARK: - CityButton
 - (void)didSelectCity:(City *)city {
     if (city && [self.delegate respondsToSelector:@selector(addressPicker:didSelectCity:)]) {
-        [self.delegate addressPicker:self didSelectCity:city];
-        [self writeToRecentFile:city];
         // dismiss
         [self onCancelBarItem:nil];
+        [self.delegate addressPicker:self didSelectCity:city];
+        [self writeToRecentFile:city];
     }
 }
 
