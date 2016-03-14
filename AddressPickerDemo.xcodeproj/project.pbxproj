@@ -30,6 +30,12 @@
 		4278877A1C93E0A10087D02C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 427887781C93E0A10087D02C /* LaunchScreen.storyboard */; };
 		4278877F1C93E0AB0087D02C /* AddressPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4249E5511C929FB800A19E6C /* AddressPicker.framework */; };
 		427887811C93E0B30087D02C /* AddressPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4249E5511C929FB800A19E6C /* AddressPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4278878C1C9419490087D02C /* INTULocationManager+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 427887861C9419490087D02C /* INTULocationManager+Internal.h */; };
+		4278878D1C9419490087D02C /* INTULocationManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 427887871C9419490087D02C /* INTULocationManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4278878E1C9419490087D02C /* INTULocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 427887881C9419490087D02C /* INTULocationManager.m */; };
+		4278878F1C9419490087D02C /* INTULocationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 427887891C9419490087D02C /* INTULocationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		427887901C9419490087D02C /* INTULocationRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 4278878A1C9419490087D02C /* INTULocationRequest.m */; };
+		427887911C9419490087D02C /* INTULocationRequestDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = 4278878B1C9419490087D02C /* INTULocationRequestDefines.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +91,12 @@
 		427887761C93E0A10087D02C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		427887791C93E0A10087D02C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4278877B1C93E0A10087D02C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		427887861C9419490087D02C /* INTULocationManager+Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "INTULocationManager+Internal.h"; sourceTree = "<group>"; };
+		427887871C9419490087D02C /* INTULocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INTULocationManager.h; sourceTree = "<group>"; };
+		427887881C9419490087D02C /* INTULocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INTULocationManager.m; sourceTree = "<group>"; };
+		427887891C9419490087D02C /* INTULocationRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INTULocationRequest.h; sourceTree = "<group>"; };
+		4278878A1C9419490087D02C /* INTULocationRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = INTULocationRequest.m; sourceTree = "<group>"; };
+		4278878B1C9419490087D02C /* INTULocationRequestDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = INTULocationRequestDefines.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +141,7 @@
 		328F5C8B1C4641D100360E29 /* AddressPickerController */ = {
 			isa = PBXGroup;
 			children = (
+				427887851C9419490087D02C /* INTULocationManager */,
 				427887491C93B8430087D02C /* PinYin4Objc */,
 				427887451C93ACF00087D02C /* AddressPickerController.h */,
 				427887461C93ACF00087D02C /* AddressPickerController.m */,
@@ -213,6 +226,20 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		427887851C9419490087D02C /* INTULocationManager */ = {
+			isa = PBXGroup;
+			children = (
+				427887861C9419490087D02C /* INTULocationManager+Internal.h */,
+				427887871C9419490087D02C /* INTULocationManager.h */,
+				427887881C9419490087D02C /* INTULocationManager.m */,
+				427887891C9419490087D02C /* INTULocationRequest.h */,
+				4278878A1C9419490087D02C /* INTULocationRequest.m */,
+				4278878B1C9419490087D02C /* INTULocationRequestDefines.h */,
+			);
+			name = INTULocationManager;
+			path = AddressPicker/INTULocationManager;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -220,10 +247,14 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4278878C1C9419490087D02C /* INTULocationManager+Internal.h in Headers */,
 				4278875F1C93B8430087D02C /* PinyinFormatter.h in Headers */,
 				4249E5541C929FB800A19E6C /* AddressPicker.h in Headers */,
 				4278875C1C93B8430087D02C /* NSString+PinYin4Cocoa.h in Headers */,
 				427887611C93B8430087D02C /* PinyinHelper.h in Headers */,
+				4278878D1C9419490087D02C /* INTULocationManager.h in Headers */,
+				427887911C9419490087D02C /* INTULocationRequestDefines.h in Headers */,
+				4278878F1C9419490087D02C /* INTULocationRequest.h in Headers */,
 				4278875A1C93B8430087D02C /* HanyuPinyinOutputFormat.h in Headers */,
 				427887471C93ACF00087D02C /* AddressPickerController.h in Headers */,
 				4278875E1C93B8430087D02C /* PinYin4Objc.h in Headers */,
@@ -335,10 +366,12 @@
 			files = (
 				427887621C93B8430087D02C /* PinyinHelper.m in Sources */,
 				427887601C93B8430087D02C /* PinyinFormatter.m in Sources */,
+				427887901C9419490087D02C /* INTULocationRequest.m in Sources */,
 				4278875B1C93B8430087D02C /* HanyuPinyinOutputFormat.m in Sources */,
 				4278875D1C93B8430087D02C /* NSString+PinYin4Cocoa.m in Sources */,
 				427887481C93ACF00087D02C /* AddressPickerController.m in Sources */,
 				427887591C93B8430087D02C /* ChineseToPinyinResource.m in Sources */,
+				4278878E1C9419490087D02C /* INTULocationManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

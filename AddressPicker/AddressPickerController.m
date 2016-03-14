@@ -8,6 +8,7 @@
 
 #import "AddressPickerController.h"
 #import "PinYin4Objc.h"
+#import "INTULocationManager/INTULocationManager.h"
 
 @protocol CityButtonCallDelegate <NSObject>
 - (void)didSelectCity: (City *)city;
@@ -192,6 +193,7 @@
 
 - (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
+    if (self.searchController.active) { return nil; }
     NSMutableArray *tArr = [NSMutableArray arrayWithObjects:@"#", @"$", @"*", nil];
     NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:nil ascending:YES];
     NSArray *Fs = [[self.cityListByFirstChar allKeys] sortedArrayUsingDescriptors:@[sort]];
@@ -207,7 +209,7 @@
     for (int index = 0; index < [searchString length]; index++) {
         [regex appendFormat:@"%c\\w*", [searchString characterAtIndex:index]];
     }
-    NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF.pinyin MATCHES %@ OR SELF.name CONTAINS %@", regex, searchString];
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF.name CONTAINS %@ OR SELF.pinyin MATCHES %@", searchString, regex];
     self.searchList = [self.cityList filteredArrayUsingPredicate:pre];
     [self.tableView reloadData];
 }
@@ -277,7 +279,7 @@
 @end
 
 @interface CityButton : UIButton
-@property (strong) City *city;
+@property (nonatomic, strong) City *city;
 @end
 @implementation CityButton
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -287,6 +289,12 @@
         self.layer.borderWidth = 1.0f;
     }
     return self;
+}
+- (void)setCity:(City *)city {
+    if (![self.city isEqual:city]) {
+        _city = city;
+        [self setTitle:city.name forState:UIControlStateNormal];
+    }
 }
 @end
 
@@ -350,6 +358,7 @@
         [_button setTitle:@"定位中..." forState:UIControlStateNormal];
         [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.contentView addSubview:_button];
+        [self setUpLocationService];
     }
     return self;
 }
@@ -359,6 +368,45 @@
     if (sender.city && [self.delegate respondsToSelector:@selector(didSelectCity:)]) {
         [self.delegate didSelectCity:sender.city];
     }
+}
+
+- (void)setUpLocationService {
+    INTULocationManager *locMgr = [INTULocationManager sharedInstance];
+    [locMgr requestLocationWithDesiredAccuracy:INTULocationAccuracyCity
+                                       timeout:10.0
+                          delayUntilAuthorized:YES  // This parameter is optional, defaults to NO if omitted
+                                         block:^(CLLocation *currentLocation, INTULocationAccuracy achievedAccuracy, INTULocationStatus status) {
+                                             if (status == INTULocationStatusSuccess) {
+                                                 // Request succeeded, meaning achievedAccuracy is at least the requested accuracy, and
+                                                 // currentLocation contains the device's current location.
+                                                 CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+                                                 //根据经纬度反向地理编译出地址信息
+                                                 [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *array, NSError *error){
+                                                     if (array && array.count > 0){
+                                                         CLPlacemark *placemark = [array objectAtIndex:0];
+                                                         //获取城市
+                                                         NSString *cityStr = placemark.locality ? placemark.locality : placemark.administrativeArea;
+                                                         // 去掉城市后面的"市"
+                                                         if ([cityStr hasSuffix:@"市"]) {
+                                                             cityStr = [cityStr substringToIndex:[cityStr length]-1];
+                                                         }
+                                                         City *city = [[City alloc] initWithName:cityStr code:@""];
+                                                         _button.city = city;
+                                                     } else {
+                                                         // 反解码失败
+                                                         [_button setTitle:@"定位失败" forState:UIControlStateNormal];
+                                                     }
+                                                 }];
+                                             } else if (status == INTULocationStatusTimedOut) {
+                                                 // Wasn't able to locate the user with the requested accuracy within the timeout interval.
+                                                 // However, currentLocation contains the best location available (if any) as of right now,
+                                                 // and achievedAccuracy has info on the accuracy/recency of the location in currentLocation.
+                                                 [_button setTitle:@"定位失败" forState:UIControlStateNormal];
+                                             } else {
+                                                 // An error occurred, more info is available by looking at the specific status returned.
+                                                 [_button setTitle:@"定位失败" forState:UIControlStateNormal];
+                                             }
+                                         }];
 }
 
 + (CGFloat)calcHeight {

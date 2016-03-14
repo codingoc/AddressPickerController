@@ -18,3 +18,6 @@ FOUNDATION_EXPORT const unsigned char AddressPickerVersionString[];
 
 
 #import <AddressPicker/AddressPickerController.h>
+#import <AddressPicker/INTULocationManager.h>
+#import <AddressPicker/INTULocationRequest.h>
+#import <AddressPicker/INTULocationRequestDefines.h>
