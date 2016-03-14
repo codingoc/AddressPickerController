@@ -29,4 +29,4 @@ iOS8+城市地址选择控制器，使用方法如下:
 ```
 
 效果如下： 
-![](https://github.com/codingoc/AddressPickerController/raw/master/snapshot.PNG)
+	![](https://github.com/codingoc/AddressPickerController/raw/master/snapshot.PNG)
