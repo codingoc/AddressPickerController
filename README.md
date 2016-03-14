@@ -1,7 +1,8 @@
 ## 城市地址选择
 iOS8+城市地址选择控制器，使用方法如下:
 
-```
+```objc
+- (void)openAddressPicker {
 	City *c0 = [[City alloc] initWithName:@"宜昌" code:@"4201"];
 	City *c1 = [[City alloc] initWithName:@"阿坝州" code:@"4201"];
 	City *c2 = [[City alloc] initWithName:@"北京" code:@"4201"];
@@ -20,11 +21,12 @@ iOS8+城市地址选择控制器，使用方法如下:
 	AddressPickerController *picker = [[AddressPickerController alloc] initWithCityList:list hotCityList:@[c11, c12, c1, c2, c3]];
 	picker.delegate = self;
 	[self presentViewController:[[UINavigationController alloc] initWithRootViewController:picker] animated:YES completion:nil];
+}
     
 - (void)addressPicker:(AddressPickerController *)addressPicker didSelectCity:(City *)city {
     NSLog(@"%@", city);
 }
 ```
 
-效果如下：
+效果如下： 
 ![](https://github.com/codingoc/AddressPickerController/raw/master/snapshot.PNG)
