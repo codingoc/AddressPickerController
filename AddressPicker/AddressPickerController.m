@@ -48,9 +48,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(onCancelBarItem:)];
     [self setUpTableView];
     [self setUpSearchBar];
     [self setUpRecentCities];
+}
+
+- (void)onCancelBarItem: (UIBarButtonItem *)barItem {
+    self.searchController.active = NO;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -216,9 +222,11 @@
 
 // MARK: - CityButton
 - (void)didSelectCity:(City *)city {
-    if ([self.delegate respondsToSelector:@selector(addressPicker:didSelectCity:)]) {
+    if (city && [self.delegate respondsToSelector:@selector(addressPicker:didSelectCity:)]) {
         [self.delegate addressPicker:self didSelectCity:city];
         [self writeToRecentFile:city];
+        // dismiss
+        [self onCancelBarItem:nil];
     }
 }
 
@@ -327,7 +335,7 @@
 }
 
 - (void)onBtn: (CityButton *)sender {
-    if (sender.city && [self.delegate respondsToSelector:@selector(didSelectCity:)]) {
+    if ([self.delegate respondsToSelector:@selector(didSelectCity:)]) {
         [self.delegate didSelectCity:sender.city];
     }
 }
@@ -365,7 +373,7 @@
 
 - (void)onBtn: (CityButton *)sender
 {
-    if (sender.city && [self.delegate respondsToSelector:@selector(didSelectCity:)]) {
+    if ([self.delegate respondsToSelector:@selector(didSelectCity:)]) {
         [self.delegate didSelectCity:sender.city];
     }
 }
